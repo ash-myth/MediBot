@@ -143,7 +143,7 @@ Your entire response should be ONLY the JSON array.`;
       
       setSearchProgress(30);
       
-      const geminiModelName = "gemini-1.5-pro";
+      const geminiModelName = "gemini-2.5-pro";
       const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${geminiModelName}:generateContent?key=${GEMINI_API_KEY}`;
 
       const requestBody = {

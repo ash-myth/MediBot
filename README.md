@@ -194,7 +194,7 @@ Install -MediBot using one of the following methods:
 
 1. Clone the -MediBot repository:
 ```sh
-❯ git clone https://github.com/Astro-Saurav/-MediBot
+❯ git clone https://github.com/ash-myth/MediBot
 ```
 
 2. Navigate to the project directory:
@@ -249,7 +249,7 @@ Run the test suite using the following command:
 1. **Fork the Repository**: Start by forking the project repository to your github account.
 2. **Clone Locally**: Clone the forked repository to your local machine using a git client.
    ```sh
-   git clone https://github.com/Astro-Saurav/-MediBot
+   git clone https://github.com/ash-myth/MediBot
    ```
 3. **Create a New Branch**: Always work on a new branch, giving it a descriptive name.
    ```sh
@@ -272,8 +272,8 @@ Run the test suite using the following command:
 <summary>Contributor Graph</summary>
 <br>
 <p align="left">
-   <a href="https://github.com/Astro-Saurav">
-      <img src="https://contrib.rocks/image?repo=Astro-Saurav/-MediBot">
+   <a href="https://github.com/ash-myth">
+      <img src="https://github.com/ash-myth/MediBot">
    </a>
 </p>
 </details>
@@ -282,4 +282,4 @@ Run the test suite using the following command:
 
 ## 🎗 License
 
-This project is protected under the [MIT license](https://github.com/Astro-Saurav/-MediBot/blob/main/LICENSE).
+This project is protected under the [MIT license](https://github.com/ash-myth/MediBot?tab=MIT-1-ov-file).

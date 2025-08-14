@@ -5,7 +5,7 @@
 	<em><code>❯ Making medical information accessible, understandable, and reliable for everyone.</code></em>
 </p>
 	
-[Website](https://medibotai-alpha.vercel.app/)
+[Website](https://medi-botai.vercel.app/)
 <p align="left">
 	<img src="https://img.shields.io/github/license/Astro-Saurav/-MediBot?style=flat-square&logo=opensourceinitiative&logoColor=white&color=0080ff" alt="license">
 	<img src="https://img.shields.io/github/last-commit/Astro-Saurav/-MediBot?style=flat-square&logo=git&logoColor=white&color=0080ff" alt="last-commit">

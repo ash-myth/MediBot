@@ -6,12 +6,7 @@
 </p>
 	
 [Website](https://medi-botai.vercel.app/)
-<p align="left">
-	<img src="https://img.shields.io/github/license/Astro-Saurav/-MediBot?style=flat-square&logo=opensourceinitiative&logoColor=white&color=0080ff" alt="license">
-	<img src="https://img.shields.io/github/last-commit/Astro-Saurav/-MediBot?style=flat-square&logo=git&logoColor=white&color=0080ff" alt="last-commit">
-	<img src="https://img.shields.io/github/languages/top/Astro-Saurav/-MediBot?style=flat-square&color=0080ff" alt="repo-top-language">
-	<img src="https://img.shields.io/github/languages/count/Astro-Saurav/-MediBot?style=flat-square&color=0080ff" alt="repo-language-count">
-</p>
+
 <p align="left">Built with the tools and technologies:</p>
 <p align="left">
 	<img src="https://img.shields.io/badge/Express-000000.svg?style=flat-square&logo=Express&logoColor=white" alt="Express">

@@ -5,7 +5,7 @@
 	<em><code>❯ Making medical information accessible, understandable, and reliable for everyone.</code></em>
 </p>
 	
-[Website](https://medi-botai.vercel.app/)
+[Website](medi-bot-woad.vercel.app)
 
 <p align="left">Built with the tools and technologies:</p>
 <p align="left">

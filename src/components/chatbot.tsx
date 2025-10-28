@@ -17,6 +17,64 @@ type Message = {
   content: string;
 };
 
+// New component to parse and render markdown
+const MarkdownMessage = ({ content }: { content: string }) => {
+  const lines = content.split('* ').filter(line => line.trim() !== '');
+
+  const preamble = lines[0].includes(':') ? lines.shift() : null;
+
+  const sections: Record<string, string[]> = {};
+  let currentSection = '';
+
+  lines.forEach(line => {
+    const trimmedLine = line.trim();
+    if (trimmedLine.endsWith(':')) {
+      currentSection = trimmedLine.slice(0, -1);
+      if (!sections[currentSection]) {
+        sections[currentSection] = [];
+      }
+    } else if (currentSection) {
+      sections[currentSection].push(trimmedLine);
+    }
+  });
+
+
+  if (Object.keys(sections).length === 0) {
+      // Fallback for simple lists
+      const listItems = content.split('*').map(s => s.trim()).filter(Boolean);
+      if (listItems.length > 1) {
+        return (
+            <div>
+                <ul className="list-disc list-inside space-y-1">
+                    {listItems.map((item, index) => (
+                        <li key={index} dangerouslySetInnerHTML={{ __html: item.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }}></li>
+                    ))}
+                </ul>
+            </div>
+        );
+      }
+      return <p className="text-sm break-words">{content}</p>;
+  }
+
+
+  return (
+    <div className="space-y-2 text-sm">
+      {preamble && <p className="mb-2">{preamble}</p>}
+      {Object.entries(sections).map(([sectionTitle, items]) => (
+        <div key={sectionTitle}>
+          <p className="font-semibold">{sectionTitle}</p>
+          <ul className="list-disc list-inside pl-4 text-muted-foreground">
+            {items.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -75,16 +133,29 @@ export default function Chatbot() {
   const renderMessageContent = (content: string) => {
     const contactLinkMarker = '[CONTACT_PAGE_LINK]';
     if (content.includes(contactLinkMarker)) {
+      const textParts = content.split(contactLinkMarker);
       return (
         <>
-          <p className="text-sm whitespace-pre-wrap">{content.replace(contactLinkMarker, '')}</p>
-          <Button asChild size="sm" className="mt-2">
-            <Link href="/contact">Go to Contact Page</Link>
-          </Button>
+          {textParts.map((part, index) => (
+            <span key={index}>
+              {part}
+              {index < textParts.length - 1 && (
+                <Button asChild size="sm" className="mt-2">
+                  <Link href="/contact">Go to Contact Page</Link>
+                </Button>
+              )}
+            </span>
+          ))}
         </>
       );
     }
-    return <p className="text-sm whitespace-pre-wrap">{content}</p>;
+    
+    // Check for markdown-like list
+    if (content.includes('* ')) {
+      return <MarkdownMessage content={content} />;
+    }
+
+    return <p className="text-sm break-words">{content}</p>;
   }
 
   return (
@@ -108,14 +179,14 @@ export default function Chatbot() {
                   <X className="h-4 w-4" />
                 </Button>
               </CardHeader>
-              <CardContent className="flex-1 p-0">
+              <CardContent className="flex-1 overflow-hidden p-0">
                 <ScrollArea className="h-full p-4" ref={scrollAreaRef}>
                   <div className="space-y-4">
                   <div className="flex items-start gap-3">
                       <Avatar>
                         <AvatarFallback>AI</AvatarFallback>
                       </Avatar>
-                      <div className="bg-muted p-3 rounded-lg max-w-xs">
+                      <div className="bg-muted p-3 rounded-lg max-w-xs break-words">
                         <p className="text-sm">Hello! How can I help you today?</p>
                       </div>
                     </div>
@@ -132,7 +203,7 @@ export default function Chatbot() {
                           </Avatar>
                         )}
                         <div
-                          className={`p-3 rounded-lg max-w-xs flex flex-col ${
+                          className={`p-3 rounded-lg max-w-xs flex flex-col break-words ${
                             msg.role === 'user'
                               ? 'bg-primary text-primary-foreground'
                               : 'bg-muted'
